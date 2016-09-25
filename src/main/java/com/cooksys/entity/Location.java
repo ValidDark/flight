@@ -3,7 +3,9 @@ package com.cooksys.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -11,7 +13,9 @@ import javax.persistence.Table;
 public class Location {
 
 	@Id
-	@GeneratedValue
+	@SequenceGenerator(name="user_id_seq", sequenceName="user_id_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.IDENTITY, generator="user_id_seq")
+	@Column(updatable=false)
 	private long id;
 
 	@Column(name = "longitude")

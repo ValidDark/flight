@@ -7,11 +7,15 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.cooksys.component.FlightGenerator;
-import com.cooksys.pojo.Flight;
+import com.cooksys.entity.Flight;
+import com.cooksys.repository.FlightRepository;
 
 @Service
 public class FlightService {
 
+	@Autowired
+	FlightRepository repo;
+	
 	@Autowired
 	FlightGenerator generator;
 
@@ -23,10 +27,17 @@ public class FlightService {
 	}
 	
 	//The fixedDelay parameter determines how often a new day is generated as expressed in milliseconds
-	@Scheduled(fixedDelay=5000)
+	//currently set to 5 seconds, can decrease for testing.
+	@Scheduled(fixedDelay=30000)
 	private void refreshFlights()
 	{
 		flightList = generator.generateNewFlightList();
+
+		
+		for (Flight flight : flightList) {
+			repo.save(flight);
+		}
+		
 	}
 	
 }

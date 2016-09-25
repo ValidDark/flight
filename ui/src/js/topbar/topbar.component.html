@@ -1,0 +1,21 @@
+<body>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li class="logo" style="text-align:center"><img class="img-responsive" src="../../img/logo.png" height="50px" /></li>
+        <li style="float:right">
+            <md-button class="md-primary md-raised" ng-click="showRegister($event)" ng-show='!ctrl.loggedIn'>REGISTER</md-button>
+        </li>
+        <li style="float:right">
+            <md-button class="md-primary md-raised" ng-click="showLogin($event)" ng-show='!ctrl.loggedIn'>LOGIN</md-button>
+        </li>
+        <li style="float:right">
+            <md-button class="md-primary md-raised" ng-click="logout()" ng-show='ctrl.loggedIn'>LOGOUT</md-button>
+        </li>
+        <li style="float:right">
+            <md-button class="md-primary md-raised" ng-click="showLogin($event)" ng-show='ctrl.loggedIn'>PROFILE</md-button>
+        </li>
+        <li style="float:right" ng-show='ctrl.loggedIn'>Logged in as {{ctrl.user.userName}}</li>
+    </ul>
+
+</body>

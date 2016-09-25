@@ -1,0 +1,81 @@
+body {
+  background-color: #333 !important;
+}
+
+.logo {
+    position: absolute;
+    display: block;
+    margin-left: 45%;
+    margin-top: 5px;
+
+}
+
+/*div {
+  border: 1px solid darkblue;
+}*/
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+  background: #CD6623; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#CD6623, #BB482D); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#CD6623, #BB482D); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#CD6623, #BB482D); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#CD6623, #BB482D); /* Standard syntax (must be last) */
+}
+
+li {
+    float: left;
+    text-align: center;
+    color: black;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+button {
+  width: 120px !important; }
+
+.md-button {
+  background-color: #33ccff !important
+}
+
+
+.loginBox{
+  width: 350px;
+}
+
+.md-block{
+  padding:  0px;
+  margin: 0px;
+}
+
+
+.popup #popupContainer {
+  position: relative !important;
+ }
+
+
+
+
+.popup div#status {
+  color: #c60008 !important; }
+
+.popup .dialog-demo-prerendered md-checkbox {
+  margin-bottom: 0 !important; }
