@@ -1,9 +1,8 @@
-import templateUrl from './home.component.html'
+import templateUrl from './home.template.html'
 import homeController from './home.controller.js'
 
 export default {
     templateUrl,
-    controller: homeController,
-    controllerAs: 'ctrl'
-
+    controllerAs: 'ctrl',
+    controller: homeController
 }

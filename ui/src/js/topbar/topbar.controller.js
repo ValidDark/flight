@@ -99,7 +99,7 @@ class Controller {
                 console.log(user)
                 console.log(user.userName)
 
-                gService.finduser(user.userName).then(function(response) {
+                gService.findUser(user.userName).then(function(response) {
 
                     console.log(response.data)
 
@@ -130,18 +130,10 @@ class Controller {
                 })
 
 
-
-
-
             };
 
 
         }
-
-
-
-
-
 
 
 

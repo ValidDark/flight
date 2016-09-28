@@ -1,0 +1,40 @@
+<div ng-show='!ctrl.loggedIn'>
+Whoops! something went wrong or you are not logged in.  Please go back and try again.
+</div>
+
+
+
+
+
+
+<div ng-show="ctrl.loggedIn">
+
+
+  <div layout-gt-sm="row" layout-align="right">
+
+      <div flex-gt-sm="50" flex="">
+
+          <md-toolbar layout="row" class="md-hue-3">
+              <div class="md-toolbar-tools">
+                  <span>{{ctrl.user.userName}}'s Booked Flights</span>
+              </div>
+          </md-toolbar>
+
+          <md-content class="flightList">
+              <md-list>
+                  <md-list-item class="md-3-line" ng-repeat="flight in ctrl.user.itineraries" ng-click="ctrl.getDetail(flight)">
+                      <div class="md-list-item-text" layout="column">
+                          <h3>From: {{flight.flights[0].origin}} To: {{flight.flights[flight.flights.length - 1].destination}}  in {{flight.flights.length}} flight(s).</h3>
+                          <h4>Total Flight Length: {{flight.flightTime + flight.totalDelay}} hours.</h4>
+                          <p>Total Flight Length: {{flight.flightTime + flight.totalDelay}} hours.  Total Time in Air: {{flight.flightTime}}  Total Layover Time: {{flight.totalDelay}}</p>
+                          <p>Departure: {{ctrl.departure(flight.flights[0])}} Arrival: {{ctrl.arrival(flight.flights[flight.flights.length - 1])}}</p>
+                      </div>
+                  </md-list-item>
+              </md-list>
+          </md-content>
+      </div>
+  </div>
+
+
+
+</div>

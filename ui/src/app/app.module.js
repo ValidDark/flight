@@ -5,6 +5,8 @@ import 'bcryptjs'
 
 import topbar from '../js/topbar/topbar.component'
 import home from '../js/home/home.module'
+import profile from '../js/profile/profile.module'
+import detail from '../js/detail/detail.module'
 import apiUrl from './api.url'
 
 
@@ -13,7 +15,7 @@ import gService from '../js/shared/global.services'
 
 export default
   angular
-    .module('flight', [uiRoute, ngMaterial, home])
+    .module('flight', [uiRoute, ngMaterial, home, profile, detail])
     .service('gService', gService)
     .constant('server', apiUrl)
     .component('topbar', topbar)

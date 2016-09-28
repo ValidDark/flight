@@ -17,14 +17,19 @@ public class Itinerary {
 	@Column(updatable=false)
 	private Integer id;	
 	
-	@JsonIgnore
-	@ManyToMany(mappedBy="itinerary", fetch=FetchType.LAZY)
+	
+	@OneToMany(mappedBy="itinerary", fetch=FetchType.LAZY, cascade=CascadeType.MERGE )
 	private List<Flight> flights;
 	
-	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	@ManyToOne(optional = false, fetch = FetchType.EAGER, cascade=CascadeType.MERGE )
 	private User owner;
 
+	@Column
+	private Integer flightTime;
 	
+	@Column
+	private Integer totalDelay;
+		
 	public Integer getId() {
 		return id;
 	}
@@ -43,4 +48,23 @@ public class Itinerary {
 	public void setOwner(User owner) {
 		this.owner = owner;
 	}
+	public Integer getFlightTime() {
+		return flightTime;
+	}
+	public void setFlightTime(Integer flightTime) {
+		this.flightTime = flightTime;
+	}
+	public Integer getTotalDelay() {
+		return totalDelay;
+	}
+	public void setTotalDelay(Integer totalDelay) {
+		this.totalDelay = totalDelay;
+	}
+	public Itinerary() {
+		super();
+		setTotalDelay(0);
+		setFlightTime(0);
+	}
+	
+	
 }

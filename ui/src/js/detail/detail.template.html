@@ -1,0 +1,71 @@
+
+<!-- Error Message -->
+<div ng-show='ctrl.badInfo'>
+Whoops! something went wrong and you shouldn't be on this screen.  Please go back and try again.
+</div>
+
+
+
+
+
+
+
+
+
+
+<div ng-show="!ctrl.badInfo">
+
+
+
+  <div map-lazy-load="https://maps.google.com/maps/api/js" layout-gt-sm="row"   layout="row" layout-align="center center" class="map">
+    <ng-map center="{{ctrl.center}}" zoom="{{ctrl.zoom}}">
+      <marker
+        ng-repeat="mapMarker in ctrl.markers"
+        position="{{mapMarker.position}}">
+      </marker>
+      <shape
+        ng-repeat="mapPath in ctrl.paths"
+        name="polyline"
+        path="{{mapPath.path}}"
+        stroke-color="{{mapPath.strokeColor}}"
+        stroke-opacity="{{mapPath.strokeOpacity}}"
+        stroke-weight="{{mapPath.strokeWeight}}"
+        geodesic="{{mapPath.geodesic}}">
+      </shape>
+  </ng-map>
+  </div>
+
+  <div layout-gt-sm="row" layout-align="right">
+
+      <div flex-gt-sm="50" flex="">
+
+          <md-toolbar layout="row" class="md-hue-3">
+              <div class="md-toolbar-tools">
+                  <span>Flights</span>
+              </div>
+          </md-toolbar>
+
+          <md-content class="flightList">
+              <md-list>
+                  <md-list-item class="md-3-line" ng-repeat="flight in ctrl.item.flights">
+                      <div class="md-list-item-text" layout="column">
+                          <h3>From: {{flight.origin}} To: {{flight.destination}}</h3>
+                          <h4>Flight Length: {{flight.flightTime}} hours.</h4>
+                          <p>Departure: {{ctrl.departure(flight)}} Arrival: {{ctrl.arrival(flight)}}</p>
+                          <div style={{ctrl.colorStyle(flight)}}>&nbsp;</div>
+                      </div>
+                  </md-list-item>
+                  <md-list-item ng-show='!ctrl.service.loggedIn'>
+                    <h3>Log In to book this flight!</h3>
+                  </md-list-item>
+                  <md-list-item ng-show='ctrl.service.loggedIn' ng-click="ctrl.bookFlight()">
+                    <h3>Book this flight!</h3>
+                  </md-list-item>
+              </md-list>
+          </md-content>
+      </div>
+  </div>
+
+
+
+</div>

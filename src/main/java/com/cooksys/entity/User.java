@@ -33,7 +33,6 @@ public class User {
 	@Column(nullable=false)
 	private String email;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy="owner", fetch=FetchType.LAZY)
     private Set<Itinerary> itineraries;
 

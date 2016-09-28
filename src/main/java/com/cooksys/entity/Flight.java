@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Flights")
 public class Flight {
@@ -13,6 +15,12 @@ public class Flight {
 	@GeneratedValue(strategy=GenerationType.IDENTITY, generator="user_id_seq")
 	@Column(updatable=false)
 	private Integer id;	
+	
+	
+	
+	public Flight() {
+
+	}
 	
 	//Name of city where flight originates
 	@Column(nullable=false)
@@ -30,9 +38,11 @@ public class Flight {
 	@Column(nullable=false, name="ofset")
 	private long offset;
 	
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="flight_itinerary")
-	private List<Itinerary> itinerary;
+
+	@JsonIgnore
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	private Itinerary itinerary;
+	
 	
 	public Integer getId() {
 		return id;
@@ -64,10 +74,10 @@ public class Flight {
 	public void setOffset(long offset) {
 		this.offset = offset;
 	}
-	public List<Itinerary> getItinerary() {
+	public Itinerary getItinerary() {
 		return itinerary;
 	}
-	public void setItinerary(List<Itinerary> itinerary) {
+	public void setItinerary(Itinerary itinerary) {
 		this.itinerary = itinerary;
 	}
 	public Flight(String origin, String destination, long flightTime, long offset) {

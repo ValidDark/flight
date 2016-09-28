@@ -1,0 +1,91 @@
+<div ng-show='ctrl.service.loggedIn'>
+    <md-content class="md-padding">
+        <form ng-submit="$event.preventDefault()">
+            <h3>Search for a flight!</h3>
+            <md-autocomplete
+            md-selected-item="ctrl.oselectedItem" md-search-text="ctrl.osearchText" md-items="item in ctrl.queryoSearch(ctrl.osearchText)" md-item-text="item"
+            md-min-length="0" placeholder="From">
+                  <md-item-template>
+                    <span md-highlight-text="ctrl.osearchText" md-highlight-flags="^i">{{item}}</span>
+                </md-item-template>
+                <md-not-found>
+                    No current flight with an origin matching "{{ctrl.osearchText}}" was found.
+                </md-not-found>
+            </md-autocomplete>
+            <br>
+
+            <md-autocomplete
+            md-selected-item="ctrl.dselectedItem" md-search-text="ctrl.dsearchText" md-items="item in ctrl.querydSearch(ctrl.dsearchText)" md-item-text="item" md-min-length="0" placeholder="To">
+                <md-item-template>
+                    <span md-highlight-text="ctrl.dsearchText" md-highlight-flags="^i">{{item}}</span>
+                </md-item-template>
+                <md-not-found>
+                  No current flight with an destination matching "{{ctrl.dsearchText}}" was found.
+                </md-not-found>
+            </md-autocomplete>
+
+            <div style="float:right">
+                <md-button class="md-primary md-raised" ng-click="ctrl.search(ctrl.osearchText, ctrl.dsearchText)">Search</md-button>
+                <md-button class="md-primary md-raised" ng-click="ctrl.cancelSearch()">Cancel</md-button>
+            </div>
+
+
+        </form>
+    </md-content>
+</div>
+
+
+
+
+
+<div layout-gt-sm="row" layout-align="center" ng-show='ctrl.searched'>
+
+    <div flex-gt-sm="50" flex="">
+
+        <md-toolbar layout="row" class="md-hue-3">
+            <div class="md-toolbar-tools">
+                <span>Itineraries</span>
+            </div>
+        </md-toolbar>
+
+        <md-content class="flightList">
+            <md-list>
+                <md-list-item class="md-3-line" ng-repeat="flight in ctrl.itineraries" ng-click="ctrl.getDetail(flight)">
+                    <div class="md-list-item-text" layout="column">
+                        <h3>From: {{flight.flights[0].origin}} To: {{flight.flights[flight.flights.length - 1].destination}}  in {{flight.flights.length}} flight(s).</h3>
+                        <h4>Total Flight Length: {{flight.flightTime + flight.totalDelay}} hours.</h4>
+                        <p>Total Flight Length: {{flight.flightTime + flight.totalDelay}} hours.  Total Time in Air: {{flight.flightTime}}  Total Layover Time: {{flight.totalDelay}}</p>
+                        <p>Departure: {{ctrl.departure(flight.flights[0])}} Arrival: {{ctrl.arrival(flight.flights[flight.flights.length - 1])}}</p>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </div>
+</div>
+
+
+
+
+<div layout-gt-sm="row" layout-align="center" ng-show='!ctrl.searched'>
+
+    <div flex-gt-sm="50" flex="">
+
+        <md-toolbar layout="row" class="md-hue-3">
+            <div class="md-toolbar-tools">
+                <span>Flights</span>
+            </div>
+        </md-toolbar>
+
+        <md-content class="flightList">
+            <md-list>
+                <md-list-item class="md-3-line" ng-repeat="flight in ctrl.flights" ng-click="ctrl.getDetail(flight)">
+                    <div class="md-list-item-text" layout="column">
+                        <h3>From: {{flight.origin}} To: {{flight.destination}}</h3>
+                        <h4>Flight Length: {{flight.flightTime}} hours.</h4>
+                        <p>Departure: {{ctrl.departure(flight)}} Arrival: {{ctrl.arrival(flight)}}</p>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </div>
+</div>

@@ -10,17 +10,21 @@ body {
 
 }
 
+ng-map {
+  width:50%;
+}
+
 /*div {
   border: 1px solid darkblue;
 }*/
 
-ul {
+.topbar {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color:
-    position: fixed;
+    position: fixed !important;
     top: 0;
     width: 100%;
 
@@ -31,13 +35,13 @@ ul {
   background: linear-gradient(#CD6623, #BB482D); /* Standard syntax (must be last) */
 }
 
-li {
+.topbar > li {
     float: left;
     text-align: center;
     color: black;
 }
 
-li a {
+.topbar > li a {
     display: block;
     color: black;
     text-align: center;
@@ -45,17 +49,19 @@ li a {
     text-decoration: none;
 }
 
-li a:hover:not(.active) {
+.topbar > li a:hover:not(.active) {
     background-color: #111;
 }
 
-button {
-  width: 120px !important; }
+button:not(".flightList") {
+  width: 120px !important;
+  height: 50px !important;
+  background-color: #33ccff !important;
+ }
 
-.md-button {
-  background-color: #33ccff !important
+.flightList {
+
 }
-
 
 .loginBox{
   width: 350px;
