@@ -11,9 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Flight {
 	
 	@Id
-	@SequenceGenerator(name="user_id_seq", sequenceName="user_id_seq", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.IDENTITY, generator="user_id_seq")
-	@Column(updatable=false)
+	@GeneratedValue
 	private Integer id;	
 	
 	
@@ -39,8 +37,9 @@ public class Flight {
 	private long offset;
 	
 
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
-	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@JoinColumn(name="itinerary_id")
 	private Itinerary itinerary;
 	
 	

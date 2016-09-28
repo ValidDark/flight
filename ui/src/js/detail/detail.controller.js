@@ -42,11 +42,12 @@ class Controller {
           return "background-color:"+flight.color+"!important;width:50%"
         }
 
+        if(!ctrl.badInfo){
         ctrl.item.flights.forEach(function(flight) {
             flight.color = ctrl.colorToString()
             ctrl.newColor()
         })
-
+      }
 
         /////////////////////////////////////////////////
         ////////////////Info Stuff///////////////////////
@@ -101,7 +102,7 @@ class Controller {
             })
         }
 
-
+        if( !ctrl.badInfo ){
         ctrl.cities.forEach(function(city) { //add markers for each city involved in the flight.
 
             if ((ctrl.item.flights.map(e => e.origin).includes(city.city)) || (ctrl.item.flights.map(e => e.destination).includes(city.city))) {
@@ -116,32 +117,28 @@ class Controller {
 
             ctrl.addPath(city1, city2, flight.color)
         })
-
+      }
         /////////////////////////////////////////////////
         ///////////////Booking Stuff/////////////////////
 
 
 
-        // ctrl.bookFlight = function() {
-        //
-        //   console.log("------------------------")
-        //
-        //   ctrl.item.owner = gService.lUser
-        //   console.log(gService.lUser)
-        //   console.log(ctrl.item)
-        //   delete ctrl.item.id
-        //   gService.saveItinerary(ctrl.item)
-        //
-        //
-        //   // ctrl.item.flights.forEach(function(flight) {
-        //   //     let temp = flight.color
-        //   //     delete flight.color
-        //   //     delete flight.itinerary
-        //   //     gService.saveFlight(flight)
-        //   //     flight.color = temp
-        //   // })
-        //
-        // }
+        ctrl.bookFlight = function() {
+
+          console.log("------------------------")
+
+          let flightBuffer = ctrl.item.flights
+
+
+          ctrl.item.owner = gService.lUser
+          console.log(gService.lUser)
+          console.log(ctrl.item)
+          delete ctrl.item.id //was getting a null field issue for ID even though it's supposed to generate.
+
+
+          gService.saveItinerary(ctrl.item)
+
+        }
 
     }
 }

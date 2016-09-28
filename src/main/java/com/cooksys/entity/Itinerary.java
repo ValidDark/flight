@@ -12,16 +12,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Itinerary {
 	
 	@Id
-	@SequenceGenerator(name="user_id_seq", sequenceName="user_id_seq", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.IDENTITY, generator="user_id_seq")
-	@Column(updatable=false)
+	@GeneratedValue
 	private Integer id;	
-	
-	
-	@OneToMany(mappedBy="itinerary", fetch=FetchType.LAZY, cascade=CascadeType.MERGE )
+
+	@OneToMany(mappedBy="itinerary", fetch=FetchType.EAGER, cascade=CascadeType.ALL )
 	private List<Flight> flights;
 	
-	@ManyToOne(optional = false, fetch = FetchType.EAGER, cascade=CascadeType.MERGE )
+	@ManyToOne(fetch = FetchType.LAZY )
 	private User owner;
 
 	@Column

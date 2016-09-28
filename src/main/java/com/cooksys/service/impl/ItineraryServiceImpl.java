@@ -48,14 +48,15 @@ public class ItineraryServiceImpl implements ItineraryService {
 			int flightT = 0;
 			int delayT = 0;
 			List<Flight> flights = totalFlight.getFlights();
-			
+			int fix = 0; //quick fix for delay time issue
 			int index = 0;
 			for (Flight flight2 : flights) {
 				flightT += flight2.getFlightTime();
 				
 				if(flight2 != flights.get(0))
 				{
-					delayT += flight2.getOffset()-(flights.get(index).getOffset()+flights.get(index).getFlightTime());
+					fix++;
+					delayT += flight2.getOffset()-((flights.get(index).getOffset()+flights.get(index).getFlightTime())/fix);
 				}
 				index++;
 				

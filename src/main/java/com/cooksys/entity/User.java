@@ -34,6 +34,7 @@ public class User {
 	private String email;
 	
 	@OneToMany(mappedBy="owner", fetch=FetchType.LAZY)
+	@JsonIgnore
     private Set<Itinerary> itineraries;
 
 	public Integer getId() {

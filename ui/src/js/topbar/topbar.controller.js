@@ -89,7 +89,12 @@ class Controller {
 
                 gService.newUser(user)
 
-                gService.lUser = user
+                gService.findUser(user.userName).then(function(response) {
+
+                  gService.lUser = response.data
+
+                })
+
 
                 $mdDialog.hide();
             };
@@ -134,8 +139,6 @@ class Controller {
 
 
         }
-
-
 
 
     }
