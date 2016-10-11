@@ -62,6 +62,12 @@ public class Itinerary {
 		setTotalDelay(0);
 		setFlightTime(0);
 	}
+	public Itinerary(Itinerary copy) {
+		super();
+		setFlights(copy.getFlights());
+		setTotalDelay(0);
+		setFlightTime(0);
+	}
 	
 	
 }
